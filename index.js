@@ -3,6 +3,7 @@ const path = require("path")
 const multer = require("multer")
 const app = express()
 var fs = require('fs');
+const { stringify } = require("querystring");
 
 // View Engine Setup
 app.set("views",path.join(__dirname,"views"))
@@ -65,8 +66,13 @@ function delete_file(path){
 
 app.get("/complete",function(req,res){
 	// delete_file(fname);
+	console.log(typeof(fs.readdirSync(__dirname + "\\" + upload_folder + "\\"))); 
+	var x = fs.readdirSync(__dirname + "\\" + upload_folder + "\\"); 
+	var y = fname
+	var z = [y, x]
+	console.log(x.toString()); 
 	delete_file(fname);
-    res.send("hello")
+    res.send(z.toString())
     // res.render("Signup");
 })
 
